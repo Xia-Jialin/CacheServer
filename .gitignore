@@ -1,0 +1,9 @@
+rocksdb/
+rocksdb_performance/
+server/server
+client/client
+cache-benchmark/cache-benchmark
+.DS_Store
+.vscode/
+go.sum
+vendor/

@@ -1,4 +1,4 @@
-rocksdb/
+server/rocksdb/
 rocksdb_performance/
 server/server
 client/client

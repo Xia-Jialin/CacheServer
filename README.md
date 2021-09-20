@@ -35,3 +35,9 @@ sudo apt-get install liblz4-dev
 ``` bash
 sudo apt-get install libzstd-dev
 ```
+
+### 编译rocksdb
+
+``` bash
+make static_lib
+```

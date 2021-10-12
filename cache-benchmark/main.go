@@ -58,7 +58,7 @@ func run(client cacheClient.Client, c *cacheClient.Cmd, r *result) {
 	expect := c.Value
 	start := time.Now()
 	client.Run(c)
-	d := time.Now().Sub(start)
+	d := time.Since(start)
 	resultType := c.Name
 	if resultType == "get" {
 		if c.Value == "" {
@@ -79,7 +79,7 @@ func pipeline(client cacheClient.Client, cmds []*cacheClient.Cmd, r *result) {
 	}
 	start := time.Now()
 	client.PipelinedRun(cmds)
-	d := time.Now().Sub(start)
+	d := time.Since(start)
 	for i, c := range cmds {
 		resultType := c.Name
 		if resultType == "get" {
@@ -168,7 +168,7 @@ func main() {
 	for i := 0; i < threads; i++ {
 		res.addResult(<-ch)
 	}
-	d := time.Now().Sub(start)
+	d := time.Since(start)
 	totalCount := res.getCount + res.missCount + res.setCount
 	fmt.Printf("%d records get\n", res.getCount)
 	fmt.Printf("%d records miss\n", res.missCount)

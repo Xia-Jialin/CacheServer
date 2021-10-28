@@ -1,12 +1,13 @@
 package main
 
 import (
-	"cache/server/cache"
-	"cache/server/cluster"
-	"cache/server/http"
-	"cache/server/tcp"
 	"flag"
 	"log"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache"
+	"github.com/Xia-Jialin/CacheServer/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/server/http"
+	"github.com/Xia-Jialin/CacheServer/server/tcp"
 )
 
 func main() {

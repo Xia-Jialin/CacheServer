@@ -1,12 +1,13 @@
 package main
 
 import (
-	"cache/cache-benchmark/cacheClient"
 	"flag"
 	"fmt"
 	"math/rand"
 	"strings"
 	"time"
+
+	"github.com/Xia-Jialin/CacheServer/cache-benchmark/cacheClient"
 )
 
 type statistic struct {

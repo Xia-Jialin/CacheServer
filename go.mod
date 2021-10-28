@@ -1,4 +1,4 @@
-module cache
+module github.com/Xia-Jialin/CacheServer
 
 go 1.16
 

@@ -1,9 +1,10 @@
 package main
 
 import (
-	"cache/cache-benchmark/cacheClient"
 	"flag"
 	"fmt"
+
+	"github.com/Xia-Jialin/CacheServer/cache-benchmark/cacheClient"
 )
 
 func main() {

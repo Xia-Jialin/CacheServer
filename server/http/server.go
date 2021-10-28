@@ -1,9 +1,10 @@
 package http
 
 import (
-	"cache/server/cache"
-	"cache/server/cluster"
 	"net/http"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache"
+	"github.com/Xia-Jialin/CacheServer/server/cluster"
 )
 
 type Server struct {

@@ -1,8 +1,8 @@
-# cache
+# CacheServer
 
 ## 简介
 
-分布式缓存
+分布式缓存服务器
 
 ## 依赖库安装
 
@@ -39,5 +39,5 @@ sudo apt-get install libzstd-dev
 ### 编译rocksdb
 
 ``` bash
-make static_lib
+cd rocksdb && make static_lib
 ```

@@ -36,6 +36,12 @@ sudo apt-get install liblz4-dev
 sudo apt-get install libzstd-dev
 ```
 
+### clone子模块
+
+```bash
+git submodule update --init
+```
+
 ### 编译rocksdb
 
 ``` bash

@@ -46,6 +46,7 @@ func (c *inMemoryCache) GetStat() Stat {
 	return c.Stat
 }
 
+//newInMemoryCache 创建基于内存储存数据的缓存服务
 func newInMemoryCache(ttl int) *inMemoryCache {
 	c := &inMemoryCache{make(map[string]value), sync.RWMutex{}, Stat{}, time.Duration(ttl) * time.Second}
 	if ttl > 0 {
@@ -54,6 +55,7 @@ func newInMemoryCache(ttl int) *inMemoryCache {
 	return c
 }
 
+//expirer 删除过期数据
 func (c *inMemoryCache) expirer() {
 	for {
 		time.Sleep(c.ttl)

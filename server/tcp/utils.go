@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+//readLen 读取长度
 func readLen(r *bufio.Reader) (int, error) {
 	tmp, e := r.ReadString(' ')
 	if e != nil {
@@ -20,6 +21,7 @@ func readLen(r *bufio.Reader) (int, error) {
 	return l, nil
 }
 
+// sendResponse 发送响应
 func sendResponse(value []byte, err error, conn net.Conn) error {
 	if err != nil {
 		errString := err.Error()

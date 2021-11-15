@@ -6,6 +6,7 @@ package cache
 import "C"
 import "runtime"
 
+//newRocksdbCache 创建基于rocksdb储存数据的缓存服务
 func newRocksdbCache(ttl int) *rocksdbCache {
 	options := C.rocksdb_options_create()
 	C.rocksdb_options_increase_parallelism(options, C.int(runtime.NumCPU()))

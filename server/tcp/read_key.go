@@ -6,6 +6,7 @@ import (
 	"io"
 )
 
+//readKey 读取键
 func (s *Server) readKey(r *bufio.Reader) (string, error) {
 	klen, e := readLen(r)
 	if e != nil {
@@ -24,6 +25,7 @@ func (s *Server) readKey(r *bufio.Reader) (string, error) {
 	return key, nil
 }
 
+//readKeyAndValue 读取键和值
 func (s *Server) readKeyAndValue(r *bufio.Reader) (string, []byte, error) {
 	klen, e := readLen(r)
 	if e != nil {

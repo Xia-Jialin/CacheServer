@@ -2,6 +2,9 @@ package cache
 
 import "log"
 
+//New 根据typ参数的值选择储存数据的方式
+//typ数据储存的方式
+//ttl缓存生存时间
 func New(typ string, ttl int) Cache {
 	var c Cache
 	if typ == "inmemory" {

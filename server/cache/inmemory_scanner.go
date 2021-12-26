@@ -1,5 +1,7 @@
 package cache
 
+import "github.com/Xia-Jialin/CacheServer/server/cache/scanner"
+
 type inMemoryScanner struct {
 	pair
 	pairCh  chan *pair
@@ -26,7 +28,7 @@ func (s *inMemoryScanner) Value() []byte {
 	return s.v
 }
 
-func (c *inMemoryCache) NewScanner() Scanner {
+func (c *inMemoryCache) NewScanner() scanner.Scanner {
 	pairCh := make(chan *pair)
 	closeCh := make(chan struct{})
 	go func() {

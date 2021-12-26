@@ -9,16 +9,18 @@ import (
 	"regexp"
 	"strconv"
 	"unsafe"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache/stat"
 )
 
-func (c *rocksdbCache) GetStat() Stat {
+func (c *rocksdbCache) GetStat() stat.Stat {
 	k := C.CString("rocksdb.aggregated-table-properties")
 	defer C.free(unsafe.Pointer(k))
 	v := C.rocksdb_property_value(c.db, k)
 	defer C.free(unsafe.Pointer(v))
 	p := C.GoString(v)
 	r := regexp.MustCompile(`([^;]+)=([^;]+);`)
-	s := Stat{}
+	s := stat.Stat{}
 	for _, submatches := range r.FindAllStringSubmatch(p, -1) {
 		if submatches[1] == " # entries" {
 			s.Count, _ = strconv.ParseInt(submatches[2], 10, 64)

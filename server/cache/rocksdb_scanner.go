@@ -4,7 +4,11 @@ package cache
 // #cgo CFLAGS: -I${SRCDIR}/../../rocksdb/include
 // #cgo LDFLAGS: -L${SRCDIR}/../../rocksdb -lrocksdb -lz -lpthread -lsnappy -lstdc++ -lm -lbz2 -llz4 -ldl -lzstd -O3
 import "C"
-import "unsafe"
+import (
+	"unsafe"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache/scanner"
+)
 
 type rocksdbScanner struct {
 	i           *C.rocksdb_iterator_t
@@ -37,6 +41,6 @@ func (s *rocksdbScanner) Value() []byte {
 	return C.GoBytes(unsafe.Pointer(v), C.int(length))
 }
 
-func (c *rocksdbCache) NewScanner() Scanner {
+func (c *rocksdbCache) NewScanner() scanner.Scanner {
 	return &rocksdbScanner{C.rocksdb_create_iterator(c.db, c.ro), false}
 }

@@ -3,6 +3,8 @@ package cache
 import (
 	"sync"
 	"time"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache/stat"
 )
 
 type value struct {
@@ -13,7 +15,7 @@ type value struct {
 type inMemoryCache struct {
 	c     map[string]value
 	mutex sync.RWMutex
-	Stat
+	stat.Stat
 	ttl time.Duration
 }
 
@@ -21,7 +23,7 @@ func (c *inMemoryCache) Set(k string, v []byte) error {
 	c.mutex.Lock()
 	defer c.mutex.Unlock()
 	c.c[k] = value{v, time.Now()}
-	c.add(k, v)
+	c.Add(k, v)
 	return nil
 }
 
@@ -37,18 +39,18 @@ func (c *inMemoryCache) Del(k string) error {
 	v, exist := c.c[k]
 	if exist {
 		delete(c.c, k)
-		c.del(k, v.v)
+		c.Stat.Del(k, v.v)
 	}
 	return nil
 }
 
-func (c *inMemoryCache) GetStat() Stat {
+func (c *inMemoryCache) GetStat() stat.Stat {
 	return c.Stat
 }
 
 //newInMemoryCache 创建基于内存储存数据的缓存服务
 func newInMemoryCache(ttl int) *inMemoryCache {
-	c := &inMemoryCache{make(map[string]value), sync.RWMutex{}, Stat{}, time.Duration(ttl) * time.Second}
+	c := &inMemoryCache{make(map[string]value), sync.RWMutex{}, stat.Stat{}, time.Duration(ttl) * time.Second}
 	if ttl > 0 {
 		go c.expirer()
 	}

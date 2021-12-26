@@ -1,6 +1,10 @@
 package cache
 
-import "log"
+import (
+	"log"
+
+	"github.com/Xia-Jialin/CacheServer/server/cache/badgerCache"
+)
 
 //New 根据typ参数的值选择储存数据的方式
 //typ数据储存的方式
@@ -12,6 +16,9 @@ func New(typ string, ttl int) Cache {
 	}
 	if typ == "rocksdb" {
 		c = newRocksdbCache(ttl)
+	}
+	if typ == "badger" {
+		c = badgerCache.NewbadgerCache(ttl)
 	}
 	if c == nil {
 		panic("unknown cache type " + typ)

@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/Xia-Jialin/CacheServer/server/cache/stat"
-	"github.com/Xia-Jialin/CacheServer/server/queue"
 	"github.com/dgraph-io/badger"
 )
 
@@ -30,8 +29,6 @@ func NewbadgerCache(ttl int) *badgerCache {
 	}
 	c := make(chan *pair, 5000)
 	go write_func(db, c)
-	q := queue.ItemQueue{}
-	q.New()
 
 	return &badgerCache{db: db, ttl: ttl, ch: c}
 }

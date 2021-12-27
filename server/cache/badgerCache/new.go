@@ -87,7 +87,6 @@ func (c *badgerCache) GetStat() stat.Stat {
 }
 
 func write_func(db *badger.DB, c chan *pair) {
-	count := 0
 	t := time.NewTimer(time.Second)
 	wb := db.NewWriteBatch()
 	defer wb.Cancel()
@@ -95,14 +94,8 @@ func write_func(db *badger.DB, c chan *pair) {
 	for {
 		select {
 		case p := <-c:
-			count++
 			e := badger.NewEntry([]byte(p.k), p.v).WithTTL(time.Duration(p.ttl) * time.Second)
 			wb.SetEntry(e)
-			if count == BATCH_SIZE {
-				wb.Flush()
-				wb = db.NewWriteBatch()
-				wb.SetMaxPendingTxns(BATCH_SIZE)
-			}
 			if !t.Stop() {
 				<-t.C
 			}
@@ -111,9 +104,6 @@ func write_func(db *badger.DB, c chan *pair) {
 			wb.Flush()
 			wb = db.NewWriteBatch()
 			wb.SetMaxPendingTxns(BATCH_SIZE)
-			if count != 0 {
-				count = 0
-			}
 			t.Reset(time.Second)
 		}
 	}

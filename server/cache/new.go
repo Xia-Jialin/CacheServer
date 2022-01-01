@@ -14,9 +14,9 @@ func New(typ string, ttl int) Cache {
 	if typ == "inmemory" {
 		c = newInMemoryCache(ttl)
 	}
-	if typ == "rocksdb" {
-		c = newRocksdbCache(ttl)
-	}
+	// if typ == "rocksdb" {
+	// 	c = newRocksdbCache(ttl)
+	// }
 	if typ == "badger" {
 		c = badgerCache.NewbadgerCache(ttl)
 	}

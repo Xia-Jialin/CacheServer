@@ -9,5 +9,6 @@ require (
 	github.com/hashicorp/memberlist v0.3.0
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.17.0 // indirect
+	github.com/panjf2000/gnet v1.6.4
 	stathat.com/c/consistent v1.0.0
 )

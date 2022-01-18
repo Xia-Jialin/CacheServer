@@ -1,8 +1,9 @@
 package tcpnio
 
 import (
-	"fmt"
+	"bytes"
 	"log"
+	"strconv"
 
 	"github.com/Xia-Jialin/CacheServer/server/cache"
 	"github.com/Xia-Jialin/CacheServer/server/cluster"
@@ -24,21 +25,41 @@ type echoServer struct {
 func (es *echoServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
 	data := append([]byte{}, frame...)
 
-	com := bytes.Split(data, []byte("\r\n"))
-	op := data[0]
-	if op == '*' {
-		vlen := fmt.Sprintf("%d ", len(""))
-		data = []byte(vlen)
-		c.AsyncWrite(data)
+	index := bytes.IndexByte(data, byte('*'))
+	if index == -1 {
+		return
 	}
-	// Use ants pool to unblock the event-loop.
-	// _ = es.pool.Submit(func() {
-	// })
-
+	var argv [][]byte
+	argc, _ := strconv.ParseUint(string(data[index+1:bytes.Index(data, []byte("\r\n"))]), 0, 64)
+	data = data[bytes.Index(data, []byte("\r\n"))+2:]
+	for i := 0; i < int(argc); i++ {
+		index = bytes.IndexByte(data, byte('$'))
+		length, _ := strconv.ParseUint(string(data[index+1:bytes.Index(data, []byte("\r\n"))]), 0, 64)
+		data = data[bytes.Index(data, []byte("\r\n"))+2:]
+		//argv = append(argv, data[bytes.Index(data, []byte("\r\n"))+2:bytes.Index(data, []byte("\r\n"))+2+int(length)])
+		argv = append(argv, data[:length])
+		data = data[int(length)+2:]
+	}
+	if len(argv) <= 0 {
+		return
+	}
+	if bytes.Equal(bytes.ToLower(argv[0]), []byte("set")) && len(argv) >= 3 {
+		es.Set(string(argv[1]), argv[2])
+		c.AsyncWrite([]byte("+OK\r\n"))
+	}
+	if bytes.Equal(bytes.ToLower(argv[0]), []byte("get")) && len(argv) >= 2 {
+		value, _ := es.Get(string(argv[1]))
+		acc := append([]byte{}, ([]byte("$" + strconv.Itoa(len(value)) + "\r\n" + string(value) + "\r\n"))...)
+		c.AsyncWrite(acc)
+	}
+	if bytes.Equal(bytes.ToLower(argv[0]), []byte("del")) && len(argv) >= 2 {
+		es.Del(string(argv[1]))
+		c.AsyncWrite([]byte("+OK\r\n"))
+	}
 	return
 }
 func (s *Server) Listen() {
-	log.Fatal(gnet.Serve(s.Es, "tcp://"+s.Es.Addr()+":12346", gnet.WithMulticore(true)))
+	log.Fatal(gnet.Serve(s.Es, "tcp://"+s.Es.Addr()+":6379", gnet.WithMulticore(true)))
 }
 
 func New(c cache.Cache, n cluster.Node) *Server {

@@ -7,12 +7,12 @@ import (
 	"github.com/Xia-Jialin/CacheServer/server/cache"
 	"github.com/Xia-Jialin/CacheServer/server/cluster"
 	"github.com/Xia-Jialin/CacheServer/server/http"
-	"github.com/Xia-Jialin/CacheServer/server/tcp"
+	"github.com/Xia-Jialin/CacheServer/server/tcpnio"
 )
 
 func main() {
 	typ := flag.String("type", "inmemory", "cache type")
-	ttl := flag.Int("ttl", 30, "cache time to live")
+	ttl := flag.Int("ttl", 30000, "cache time to live")
 	node := flag.String("node", "0.0.0.0", "node address")
 	clus := flag.String("cluster", "", "cluster address")
 	flag.Parse()
@@ -25,7 +25,7 @@ func main() {
 	if e != nil {
 		panic(e)
 	}
-	go tcp.New(c, n).Listen()
-	//go tcpnio.New(c, n).Listen()
+	//go tcp.New(c, n).Listen()
+	go tcpnio.New(c, n).Listen()
 	http.New(c, n).Listen()
 }

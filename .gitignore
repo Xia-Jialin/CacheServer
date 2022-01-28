@@ -6,3 +6,4 @@ cache-benchmark/cache-benchmark
 .DS_Store
 .vscode/
 vendor/
+cmd/server/server

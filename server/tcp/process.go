@@ -67,6 +67,7 @@ func reply(conn net.Conn, resultCh chan chan *result) {
 		}
 	}
 }
+
 //process 请求处理
 func (s *Server) process(conn net.Conn) {
 	r := bufio.NewReader(conn)

@@ -1,3 +1,3 @@
-BINARY_NAME=server/server
+BINARY_NAME=cmd/server/server
 build:
-	go build -i -o ./$(BINARY_NAME) ./server/
+	go build -o ./$(BINARY_NAME) ./cmd/server/

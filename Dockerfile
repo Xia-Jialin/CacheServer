@@ -1,5 +1,5 @@
 FROM debian
-COPY ./server/server ./
+COPY ./cmd/server/server ./
 EXPOSE 12345
 EXPOSE 12346
 EXPOSE 7946

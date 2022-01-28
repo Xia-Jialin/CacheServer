@@ -4,11 +4,11 @@ import (
 	"flag"
 	"log"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache"
-	"github.com/Xia-Jialin/CacheServer/server/cluster"
-	"github.com/Xia-Jialin/CacheServer/server/http"
-	"github.com/Xia-Jialin/CacheServer/server/tcp"
-	"github.com/Xia-Jialin/CacheServer/server/tcpnio"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/http"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/tcp"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/tcpnio"
 )
 
 func main() {

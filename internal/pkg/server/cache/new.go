@@ -3,7 +3,7 @@ package cache
 import (
 	"log"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache/badgerCache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/badgerCache"
 )
 
 //New 根据typ参数的值选择储存数据的方式

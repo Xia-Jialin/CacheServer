@@ -1,6 +1,8 @@
 package cache
 
-import "github.com/Xia-Jialin/CacheServer/server/cache/scanner"
+import (
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/scanner"
+)
 
 type inMemoryScanner struct {
 	pair

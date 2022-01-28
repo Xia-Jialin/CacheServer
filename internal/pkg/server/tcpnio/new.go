@@ -5,8 +5,8 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache"
-	"github.com/Xia-Jialin/CacheServer/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cluster"
 	"github.com/panjf2000/gnet"
 	"github.com/panjf2000/gnet/pkg/pool/goroutine"
 )

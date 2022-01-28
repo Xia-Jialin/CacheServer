@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache/stat"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/stat"
 )
 
 type value struct {

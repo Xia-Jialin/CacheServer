@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/stat"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache/stat"
 	"github.com/dgraph-io/badger"
 )
 

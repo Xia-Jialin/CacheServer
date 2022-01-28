@@ -4,8 +4,8 @@ import (
 	"flag"
 	"log"
 
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache"
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cluster"
 	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/http"
 	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/tcp"
 	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/tcpnio"

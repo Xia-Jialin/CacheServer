@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/scanner"
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache/stat"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache/scanner"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache/stat"
 )
 
 type Cache interface {

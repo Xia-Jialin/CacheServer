@@ -3,8 +3,8 @@ package tcp
 import (
 	"net"
 
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cache"
-	"github.com/Xia-Jialin/CacheServer/internal/pkg/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cluster"
 )
 
 type Server struct {

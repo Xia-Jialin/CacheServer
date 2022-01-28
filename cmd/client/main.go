@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/Xia-Jialin/CacheServer/cache-benchmark/cacheClient"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cacheClient"
 )
 
 func main() {

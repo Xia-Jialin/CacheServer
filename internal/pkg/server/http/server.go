@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache"
-	"github.com/Xia-Jialin/CacheServer/server/cluster"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cluster"
 )
 
 type Server struct {

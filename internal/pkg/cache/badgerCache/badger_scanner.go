@@ -1,7 +1,7 @@
 package badgerCache
 
 import (
-	"github.com/Xia-Jialin/CacheServer/server/cache/scanner"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache/scanner"
 	"github.com/dgraph-io/badger"
 )
 

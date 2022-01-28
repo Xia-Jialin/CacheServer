@@ -1,10 +1,10 @@
-package cache
+package inmemory
 
 import (
 	"sync"
 	"time"
 
-	"github.com/Xia-Jialin/CacheServer/server/cache/stat"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cache/stat"
 )
 
 type value struct {
@@ -49,7 +49,7 @@ func (c *inMemoryCache) GetStat() stat.Stat {
 }
 
 //newInMemoryCache 创建基于内存储存数据的缓存服务
-func newInMemoryCache(ttl int) *inMemoryCache {
+func NewInMemoryCache(ttl int) *inMemoryCache {
 	c := &inMemoryCache{make(map[string]value), sync.RWMutex{}, stat.Stat{}, time.Duration(ttl) * time.Second}
 	if ttl > 0 {
 		go c.expirer()

@@ -1,4 +1,4 @@
-package tcp
+package tcpnio
 
 import (
 	"bufio"
@@ -12,7 +12,7 @@ type result struct {
 	e error
 }
 
-func (s *Server) get(ch chan chan *result, r *bufio.Reader) {
+func (s *echoServer) get(ch chan chan *result, r *bufio.Reader) {
 	c := make(chan *result)
 	ch <- c
 	k, e := s.readKey(r)
@@ -26,7 +26,7 @@ func (s *Server) get(ch chan chan *result, r *bufio.Reader) {
 	}()
 }
 
-func (s *Server) set(ch chan chan *result, r *bufio.Reader) {
+func (s *echoServer) set(ch chan chan *result, r *bufio.Reader) {
 	c := make(chan *result)
 	ch <- c
 	k, v, e := s.readKeyAndValue(r)
@@ -39,7 +39,7 @@ func (s *Server) set(ch chan chan *result, r *bufio.Reader) {
 	}()
 }
 
-func (s *Server) del(ch chan chan *result, r *bufio.Reader) {
+func (s *echoServer) del(ch chan chan *result, r *bufio.Reader) {
 	c := make(chan *result)
 	ch <- c
 	k, e := s.readKey(r)
@@ -67,8 +67,9 @@ func reply(conn net.Conn, resultCh chan chan *result) {
 		}
 	}
 }
+
 //process 请求处理
-func (s *Server) process(conn net.Conn) {
+func (s *echoServer) process(conn net.Conn) {
 	r := bufio.NewReader(conn)
 	resultCh := make(chan chan *result, 5000)
 	defer close(resultCh)

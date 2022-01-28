@@ -1,4 +1,4 @@
-package cache
+package inmemory
 
 type pair struct {
 	k string

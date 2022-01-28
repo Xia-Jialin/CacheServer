@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Xia-Jialin/CacheServer/cache-benchmark/cacheClient"
+	"github.com/Xia-Jialin/CacheServer/internal/pkg/cacheClient"
 )
 
 type statistic struct {

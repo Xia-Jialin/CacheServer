@@ -32,13 +32,13 @@ func (es *echoServer) React(frame []byte, c gnet.Conn) (out []byte, action gnet.
 	var argv [][]byte
 	argc, _ := strconv.ParseUint(string(data[index+1:bytes.Index(data, []byte("\r\n"))]), 0, 64)
 	data = data[bytes.Index(data, []byte("\r\n"))+2:]
-	for i := 0; i < int(argc); i++ {
+	for i := uint64(0); i < argc; i++ {
 		index = bytes.IndexByte(data, byte('$'))
 		length, _ := strconv.ParseUint(string(data[index+1:bytes.Index(data, []byte("\r\n"))]), 0, 64)
 		data = data[bytes.Index(data, []byte("\r\n"))+2:]
 		//argv = append(argv, data[bytes.Index(data, []byte("\r\n"))+2:bytes.Index(data, []byte("\r\n"))+2+int(length)])
 		argv = append(argv, data[:length])
-		data = data[int(length)+2:]
+		data = data[length+2:]
 	}
 	if len(argv) <= 0 {
 		return
